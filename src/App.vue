@@ -16,6 +16,44 @@
         </div>
         <!-- Cart Button ends-->
 
+        
+   
+
+        <!-- Search -->
+        <div class="d-flex justify-content-center">
+            <form>
+                <input type="text" placeholder="search" @input="searchLessons" v-model="searchInput">
+            </form>
+        </div>
+        <!-- Search ends-->
+
+        <!-- Sorting starts-->
+        <div class="p-2">
+            <div class="d-flex justify-content-center m-2">
+                <button class="btn btn-outline-primary m-1" @click="sortSubjects">
+                    Subject
+                </button>
+                <button class="btn btn-outline-primary m-1" @click="sortLocations">
+                    Location
+                </button>
+                <button class="btn btn-outline-primary m-1" @click="sortPrices">
+                    Price
+                </button>
+                <button class="btn btn-outline-primary m-1" @click="sortSpaces">
+                    Spaces
+                </button>
+            </div> 
+            <div class="d-flex justify-content-center m-2">
+                <button class="m-1 btn" @click="changeToAscending" :class="{'btn-primary': activeBtn === 'asc'}">
+                    <p>Ascending</p>
+                </button>
+                <button class="m-1 btn" @click="changeToDescending" :class="{'btn-primary': activeBtn === 'dsc'}">
+                    <p>Descending</p>
+                </button>
+            </div>
+        </div>
+        <!-- Sorting ends-->
+
     <LessonsComponent v-if="!cartPage" :lessons="lessons" @add="addToCart" />
     <CheckoutComponent v-else :checkout="checkout" :cart="cart" :cartPage="cartPage" @remove="removeFromCart" />
   </div>
