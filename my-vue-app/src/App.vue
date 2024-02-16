@@ -16,8 +16,8 @@
         </div>
         <!-- Cart Button ends-->
 
-    <LessonsComponent />
-    <CheckoutComponent />
+    <LessonsComponent :lessons="lessons" />
+    <CheckoutComponent :checkout="checkout" :cart="cart" :cartPage="cartPage" />
   </div>
 </template>
 

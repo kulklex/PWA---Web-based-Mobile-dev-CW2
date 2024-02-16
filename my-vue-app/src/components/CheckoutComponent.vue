@@ -51,3 +51,11 @@
               </form>     
         </section>
 </template>
+
+
+
+<script>
+    export default {
+        props: ['checkout', 'cart', 'cartPage']
+    }
+</script>
