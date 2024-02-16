@@ -16,8 +16,8 @@
         </div>
         <!-- Cart Button ends-->
 
-    <LessonsComponent :lessons="lessons" />
-    <CheckoutComponent :checkout="checkout" :cart="cart" :cartPage="cartPage" />
+    <LessonsComponent v-if="!cartPage" :lessons="lessons" @add="addToCart" />
+    <CheckoutComponent v-else :checkout="checkout" :cart="cart" :cartPage="cartPage" @remove="removeFromCart" />
   </div>
 </template>
 

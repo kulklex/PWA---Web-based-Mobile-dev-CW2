@@ -22,12 +22,12 @@
                             <p class="card-text">
                                 Spaces: {{lesson.spaces}}
                             </p>
-                            <button class="btn btn-outline-danger" @click="removeFromCart(lesson)">
+                            <button class="btn btn-outline-danger" @click="$emit('remove', lesson)">
                                 Remove from cart
                             </button>
                         </div>
-                        <div style="margin-left: 3rem; font-size: 3rem; color:blue;">
-                            <img :src="'https://courseworkvuejs-env.eba-igkjeup4.eu-west-2.elasticbeanstalk.com/' + lesson.image" height="150" width="120">
+                        <div style="margin-left: 2rem; font-size: 3rem; color:blue;">
+                            <img :src="'https://courseworkvuejs-env.eba-igkjeup4.eu-west-2.elasticbeanstalk.com/' + lesson.image" height="100" width="90">
                         </div>
                     </div>
                </div>
