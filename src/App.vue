@@ -1,23 +1,23 @@
 <template>
-  <div id="app" class="container">
+    <div id="app" class="container">
         <h1 class="d-flex justify-content-center pt-4 pb-2">
             Book Available Lessons
         </h1>
-        
-        
+
+
         <!-- Cart Button -->
         <div class="container-fluid m-4">
-            <button  class="btn btn-outline-primary" v-show="cart.length" @click="changeToCartPage">
+            <button class="btn btn-outline-primary" v-show="cart.length" @click="changeToCartPage">
                 <div class="text-center m-2" style="width: 10rem">
                     <p style="font-size: larger;">Cart <i class="fa fa-shopping-cart" aria-hidden="true"></i></p>
-                     <span>{{(cart?.length)}} items</span>
+                    <span>{{ (cart?.length) }} items</span>
                 </div>
             </button>
         </div>
         <!-- Cart Button ends-->
 
-        
-   
+
+
 
         <!-- Search -->
         <div class="d-flex justify-content-center">
@@ -42,21 +42,21 @@
                 <button class="btn btn-outline-primary m-1" @click="sortSpaces">
                     Spaces
                 </button>
-            </div> 
+            </div>
             <div class="d-flex justify-content-center m-2">
-                <button class="m-1 btn" @click="changeToAscending" :class="{'btn-primary': activeBtn === 'asc'}">
+                <button class="m-1 btn" @click="changeToAscending" :class="{ 'btn-primary': activeBtn === 'asc' }">
                     <p>Ascending</p>
                 </button>
-                <button class="m-1 btn" @click="changeToDescending" :class="{'btn-primary': activeBtn === 'dsc'}">
+                <button class="m-1 btn" @click="changeToDescending" :class="{ 'btn-primary': activeBtn === 'dsc' }">
                     <p>Descending</p>
                 </button>
             </div>
         </div>
         <!-- Sorting ends-->
 
-    <LessonsComponent v-if="!cartPage" :lessons="lessons" @add="addToCart" />
-    <CheckoutComponent v-else :checkout="checkout" :cart="cart" :cartPage="cartPage" @remove="removeFromCart" />
-  </div>
+        <LessonsComponent v-if="!cartPage" :lessons="lessons" @add="addToCart" />
+        <CheckoutComponent v-else :checkout="checkout" :cart="cart" :cartPage="cartPage" @remove="removeFromCart" />
+    </div>
 </template>
 
 <script>
@@ -64,12 +64,12 @@ import LessonsComponent from "./components/LessonsComponent.vue"
 import CheckoutComponent from "./components/CheckoutComponent.vue"
 
 export default {
-  name: 'App',
-  components: {
-    LessonsComponent,
-    CheckoutComponent
-  },
-  data() {
+    name: 'App',
+    components: {
+        LessonsComponent,
+        CheckoutComponent
+    },
+    data() {
         return {
             cartPage: false,
             ascending: true,
@@ -114,18 +114,18 @@ export default {
                 throw new Error('Failed to update lesson spaces');
             }
         },
-        
+
         async addToCart(lesson) {
             this.updateLessonSpaces(lesson._id, lesson.spaces - 1)
-            .then(() => {
-                lesson.spaces--;
-                if (lesson.spaces >= 0) {
-                    this.cart.push(lesson);
-                }
-            })
-            .catch(error => {
-                console.error(error);
-            });
+                .then(() => {
+                    lesson.spaces--;
+                    if (lesson.spaces >= 0) {
+                        this.cart.push(lesson);
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                });
         },
         async removeFromCart(lesson) {
             try {
@@ -196,7 +196,7 @@ export default {
             this.activeBtn = 'dsc'
         },
         sortPrices() {
-            if(this.ascending){
+            if (this.ascending) {
                 let sortedSubs = this.lessons
                 sortedSubs = sortedSubs.sort((a, b) => {
                     return a.price - b.price;
@@ -212,18 +212,18 @@ export default {
         sortLocations() {
             if (this.ascending) {
                 let sortedSubs = this.lessons
-            sortedSubs = sortedSubs.sort((a, b) => {
-                let subsA = a.location.toLowerCase()
-                let subsB = b.location.toLowerCase()
-                if (subsA < subsB) {
-                    return -1
-                }
-                if (subsA > subsB) {
-                    return 1
-                }
-                return 0
-            })
-            }   
+                sortedSubs = sortedSubs.sort((a, b) => {
+                    let subsA = a.location.toLowerCase()
+                    let subsB = b.location.toLowerCase()
+                    if (subsA < subsB) {
+                        return -1
+                    }
+                    if (subsA > subsB) {
+                        return 1
+                    }
+                    return 0
+                })
+            }
             if (this.descending) {
                 let sortedSubs = this.lessons
                 sortedSubs = sortedSubs.sort((a, b) => {
@@ -240,13 +240,13 @@ export default {
             }
         },
         sortSpaces() {
-            if(this.ascending) {
+            if (this.ascending) {
                 let sortedSubs = this.lessons
                 sortedSubs = sortedSubs.sort((a, b) => {
                     return a.spaces - b.spaces;
                 })
             }
-            if(this.descending) {
+            if (this.descending) {
                 let sortedSubs = this.lessons
                 sortedSubs = sortedSubs.sort((a, b) => {
                     return b.spaces - a.spaces;
@@ -289,7 +289,7 @@ export default {
                 return true;
             } else {
                 $event.preventDefault();
-            }      
+            }
         },
         isNumbers($event) {
             var charCode = $event.keyCode;
@@ -310,17 +310,22 @@ export default {
         searchInput: function () {
             this.searchLessons();
         },
+    },
+    created: function () {
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("service-worker.js");
+        }
     }
 }
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
 }
 </style>
