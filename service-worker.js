@@ -1,6 +1,6 @@
 let cacheName = "lessons-v1";
 let cacheFiles = [
-    "./index.html",
+    "index.html",
 ];
 
 self.addEventListener("install", function (e) {
