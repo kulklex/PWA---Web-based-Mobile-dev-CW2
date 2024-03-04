@@ -311,11 +311,11 @@ export default {
             this.searchLessons();
         },
     },
-    created: function () {
-        if ("serviceWorker" in navigator) {
+   // created: function () {
+   //     if ("serviceWorker" in navigator) {
            // navigator.serviceWorker.register("service-worker.js");
-        }
-    }
+    //    }
+   // }
 }
 </script>
 
