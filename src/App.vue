@@ -51,12 +51,13 @@
                     <p>Descending</p>
                 </button>
             </div>
-            <div class="d-flex justify-content-center m-2">
-               <link href="https://courseworkvuejs-env.eba-igkjeup4.eu-west-2.elasticbeanstalk.com/lessons">Backend link</link>
+             <div class="d-flex justify-content-center m-2">
+                <a href="https://courseworkvuejs-env.eba-igkjeup4.eu-west-2.elasticbeanstalk.com/lessons">Backend link</a>
             </div>
         </div>
         <!-- Sorting ends-->
 
+       
         <LessonsComponent v-if="!cartPage" :lessons="lessons" @add="addToCart" />
         <CheckoutComponent v-else :checkout="checkout" :cart="cart" :cartPage="cartPage" @remove="removeFromCart" />
     </div>
