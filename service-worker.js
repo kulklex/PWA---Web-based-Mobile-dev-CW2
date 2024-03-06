@@ -14,7 +14,7 @@ self.addEventListener("install", function (e) {
 });
 
 self.addEventListener("fetch", function (e) {
-    if (e.request.url !== "https://courseworkvuejs-env.eba-igkjeup4.eu-west-2.elasticbeanstalk.com/lessons") {
+    
         e.respondWith(
             caches.match(e.request).then(function (cachedFile) {
                 //if the file is in the cache, retrieve it from there
@@ -34,5 +34,4 @@ self.addEventListener("fetch", function (e) {
                 }
             })
         )
-    }
 });
