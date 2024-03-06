@@ -52,7 +52,10 @@
                 </button>
             </div>
              <div class="d-flex justify-content-center m-2">
-                <a href="https://courseworkvuejs-env.eba-igkjeup4.eu-west-2.elasticbeanstalk.com/lessons">Backend link</a>
+                <button class="m-1 btn" @click="window.location.reload(true)">Reload Page</button>
+                <button class="m-1 btn" @click="delateAllCache">Delete all cache</button> 
+                <button class="m-1 btn" @click="window.location.replace(https://courseworkvuejs-env.eba-igkjeup4.eu-west-2.elasticbeanstalk.com/lessons)">Allow permission</button>
+                <button class="m-1 btn" @click="unregisterSW">Unregister All Service Workers</button>
             </div>
         </div>
         <!-- Sorting ends-->
@@ -302,6 +305,21 @@ export default {
             } else {
                 return true;
             }
+        },
+        delateAllCache() {
+            caches.keys().then(function (names) {
+                for (let name of names)
+                    caches.delete(name);
+            });
+            console.log("All Caches Deleted");
+        },
+        unregisterSW() {
+            navigator.serviceWorker.getRegistrations().then(function (registrations) {
+                    for (let registration of registrations) {
+                        registration.unregister()
+                    }
+                });
+                console.log("ServiceWorkers Unregistered");
         }
     },
     mounted() {
