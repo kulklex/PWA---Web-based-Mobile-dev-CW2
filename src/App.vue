@@ -136,13 +136,19 @@ export default {
         },
         async removeFromCart(lesson) {
             try {
-                // Increase the spaces for the lesson
-                await this.updateLessonSpaces(lesson._id, lesson.spaces + 1);
+                 // Increase the spaces for the lesson
+                 await this.updateLessonSpaces(lesson._id, lesson.spaces + 1);
+
+                // Update the lesson in the lessons array
+                const lessonInLessonsIndex = this.lessons.findIndex(l => l._id === lesson._id);
+                if (lessonInLessonsIndex !== -1) {
+                    this.lessons[lessonInLessonsIndex].spaces++;
+                }
 
                 // Remove the lesson from the cart
-                const lessonIndex = this.cart.findIndex(cartLesson => cartLesson._id === lesson._id);
-                if (lessonIndex !== -1) {
-                    this.cart.splice(lessonIndex, 1);
+                const lessonIndexInCart = this.cart.findIndex(cartLesson => cartLesson._id === lesson._id);
+                if (lessonIndexInCart !== -1) {
+                    this.cart.splice(lessonIndexInCart, 1);
                 }
             } catch (error) {
                 console.error(error);
