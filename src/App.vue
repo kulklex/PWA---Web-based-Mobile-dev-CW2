@@ -50,8 +50,11 @@
                 <button class="btn btn-outline-primary m-1" @click="changeToDescending" :class="{ 'btn-primary': activeBtn === 'dsc' }">
                     <p>Descending</p>
                 </button>
+                <button class="btn btn-outline-primary m-1" @click="toggleTestConsole">
+                    <p>Test Console</p>
+                </button>
             </div>
-             <div class="d-flex justify-content-center m-2">
+             <div v-if="testConsole" class="d-flex justify-content-center m-2">
                 <button class="btn btn-outline-primary m-1" @click="reload">Reload Page</button>
                 <button class="btn btn-outline-primary m-1" @click="delateAllCache">Delete all cache</button> 
                 <button class="btn btn-outline-primary m-1" @click="allowPermission">Allow permission</button>
@@ -91,6 +94,7 @@ export default {
             },
             lessons: [],
             searchInput: "",
+            testConsole: false
         }
     },
     methods: {
@@ -332,6 +336,9 @@ export default {
                     }
                 });
                 console.log("ServiceWorkers Unregistered");
+        },
+        toggleTestConsole() {
+            this.testConsole = !this.testConsole
         }
     },
     mounted() {
