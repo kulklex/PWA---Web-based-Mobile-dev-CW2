@@ -44,18 +44,18 @@
                 </button>
             </div>
             <div class="d-flex justify-content-center m-2">
-                <button class="m-1 btn" @click="changeToAscending" :class="{ 'btn-primary': activeBtn === 'asc' }">
+                <button class="btn btn-outline-primary m-1" @click="changeToAscending" :class="{ 'btn-primary': activeBtn === 'asc' }">
                     <p>Ascending</p>
                 </button>
-                <button class="m-1 btn" @click="changeToDescending" :class="{ 'btn-primary': activeBtn === 'dsc' }">
+                <button class="btn btn-outline-primary m-1" @click="changeToDescending" :class="{ 'btn-primary': activeBtn === 'dsc' }">
                     <p>Descending</p>
                 </button>
             </div>
              <div class="d-flex justify-content-center m-2">
-                <button class="m-1 btn" @click="window.location.reload(true)">Reload Page</button>
-                <button class="m-1 btn" @click="delateAllCache">Delete all cache</button> 
-                <button class="m-1 btn" @click="window.location.replace('https://courseworkvuejs-env.eba-igkjeup4.eu-west-2.elasticbeanstalk.com/lessons')">Allow permission</button>
-                <button class="m-1 btn" @click="unregisterSW">Unregister All Service Workers</button>
+                <button class="btn btn-outline-primary m-1" @click="reload">Reload Page</button>
+                <button class="btn btn-outline-primary m-1" @click="delateAllCache">Delete all cache</button> 
+                <button class="btn btn-outline-primary m-1" @click="allowPermission">Allow permission</button>
+                <button class="btn btn-outline-primary m-1" @click="unregisterSW">Unregister All Service Workers</button>
             </div>
         </div>
         <!-- Sorting ends-->
@@ -311,6 +311,12 @@ export default {
             } else {
                 return true;
             }
+        },
+        reload() {
+            window.location.reload(true);
+        },
+        allowPermission() {
+            window.open('https://courseworkvuejs-env.eba-igkjeup4.eu-west-2.elasticbeanstalk.com/lessons', '_blank');
         },
         delateAllCache() {
             caches.keys().then(function (names) {
